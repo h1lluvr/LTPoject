@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LT.Domain", "LT.Domain\LT.Domain.csproj", "{4285264D-0AE0-4E22-847C-A28609300ABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LT.Application", "LT.Application\LT.Application.csproj", "{77B6CB9C-1BDE-49C4-A643-AED29580D6F4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4285264D-0AE0-4E22-847C-A28609300ABD} = {4285264D-0AE0-4E22-847C-A28609300ABD}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LT.Infrastructure", "LT.Infrastructure\LT.Infrastructure.csproj", "{084201E0-3819-43CE-A4DC-11B31E587745}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4285264D-0AE0-4E22-847C-A28609300ABD} = {4285264D-0AE0-4E22-847C-A28609300ABD}
+		{77B6CB9C-1BDE-49C4-A643-AED29580D6F4} = {77B6CB9C-1BDE-49C4-A643-AED29580D6F4}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LT.API", "LT.API\LT.API.csproj", "{08A8C36A-A2AA-4529-BB6D-74E5CC5C86C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{084201E0-3819-43CE-A4DC-11B31E587745} = {084201E0-3819-43CE-A4DC-11B31E587745}
+		{77B6CB9C-1BDE-49C4-A643-AED29580D6F4} = {77B6CB9C-1BDE-49C4-A643-AED29580D6F4}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LT.Tests", "LT.Tests\LT.Tests.csproj", "{22BE1C4E-6664-49EF-A0D9-BF11C6643243}"
+	ProjectSection(ProjectDependencies) = postProject
+		{084201E0-3819-43CE-A4DC-11B31E587745} = {084201E0-3819-43CE-A4DC-11B31E587745}
+		{08A8C36A-A2AA-4529-BB6D-74E5CC5C86C0} = {08A8C36A-A2AA-4529-BB6D-74E5CC5C86C0}
+		{4285264D-0AE0-4E22-847C-A28609300ABD} = {4285264D-0AE0-4E22-847C-A28609300ABD}
+		{77B6CB9C-1BDE-49C4-A643-AED29580D6F4} = {77B6CB9C-1BDE-49C4-A643-AED29580D6F4}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4285264D-0AE0-4E22-847C-A28609300ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4285264D-0AE0-4E22-847C-A28609300ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4285264D-0AE0-4E22-847C-A28609300ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4285264D-0AE0-4E22-847C-A28609300ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B6CB9C-1BDE-49C4-A643-AED29580D6F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B6CB9C-1BDE-49C4-A643-AED29580D6F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B6CB9C-1BDE-49C4-A643-AED29580D6F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B6CB9C-1BDE-49C4-A643-AED29580D6F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{084201E0-3819-43CE-A4DC-11B31E587745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084201E0-3819-43CE-A4DC-11B31E587745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084201E0-3819-43CE-A4DC-11B31E587745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{084201E0-3819-43CE-A4DC-11B31E587745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08A8C36A-A2AA-4529-BB6D-74E5CC5C86C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A8C36A-A2AA-4529-BB6D-74E5CC5C86C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08A8C36A-A2AA-4529-BB6D-74E5CC5C86C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08A8C36A-A2AA-4529-BB6D-74E5CC5C86C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22BE1C4E-6664-49EF-A0D9-BF11C6643243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BE1C4E-6664-49EF-A0D9-BF11C6643243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BE1C4E-6664-49EF-A0D9-BF11C6643243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BE1C4E-6664-49EF-A0D9-BF11C6643243}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C1C00C8-0135-46B0-8DA2-FCACD4B22938}
+	EndGlobalSection
+EndGlobal
