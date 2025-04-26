@@ -34,5 +34,29 @@ namespace LT.Infrastructure.Repositories
         }
 
         // To do: Add the updtae and delete methods
+        #region answer
+        public async Task<Product?> UpdateAsync(Product product)
+        {
+            var existingProduct = await _db.Products.FindAsync(product.Id);
+            if (existingProduct == null) return null;
+            existingProduct.Name = product.Name;
+            existingProduct.Price = product.Price;
+            existingProduct.Description = product.Description;
+            existingProduct.CategoryId = product.CategoryId;
+
+            _db.Products.Update(existingProduct);
+            await _db.SaveChangesAsync();
+            return existingProduct;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var product = await _db.Products.FindAsync(id);
+            if (product == null) return false;
+            _db.Products.Remove(product);
+            await _db.SaveChangesAsync();
+            return true;
+        }
+        #endregion
     }
 }

@@ -12,5 +12,11 @@ namespace LT.Application.Interfaces
         Task AddAsync(Product product);
         Task<IEnumerable<Product>> GetAllWithRelationsAsync();
         Task<Product?> GetByIdWithRelationsAsync(int id);
+
+        // TO DO: Add the update and delete methods
+        #region answer
+        Task<Product?> UpdateAsync(Product product);
+        Task<bool> DeleteAsync(int id);
+        #endregion
     }
 }

@@ -14,5 +14,9 @@ namespace LT.Application.Interfaces
         Task<ProductDto> GetByIdAsync(int id);
 
         //TO DO: Edit and Delete service
+        #region answer
+        Task<ProductDto> UpdateAsync(ProductUpdateDto dto);
+        Task<bool> DeleteAsync(int id);
+        #endregion
     }
 }

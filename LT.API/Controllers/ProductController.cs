@@ -43,5 +43,30 @@ namespace LT.API.Controllers
         }
 
         // TO DO: Edit and Delete actions
+        #region answer
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ProductDto>> Update(int id, [FromBody] ProductUpdateDto dto)
+        {
+            if (dto == null || id != dto.Id)
+                return BadRequest("El ID de la URL debe coincidir con el del cuerpo.");
+
+            var updated = await _productService.UpdateAsync(dto);
+            if (updated is null)
+                return NotFound($"No existe ningún producto con Id = {id}.");
+
+            return Ok(updated);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var success = await _productService.DeleteAsync(id);
+            if (!success)
+                return NotFound($"No existe ningún producto con Id = {id}.");
+
+            // 204 No Content = borrado correcto, no devolvemos cuerpo
+            return NoContent();
+        }
+        #endregion
     }
 }

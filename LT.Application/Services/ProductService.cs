@@ -78,5 +78,51 @@ namespace LT.Application.Services
         }
 
         // TO DO: Update and Delete
+        #region answer
+        public async Task<ProductDto> UpdateAsync(ProductUpdateDto dto)
+        {
+            var product = await _productRepo.GetByIdWithRelationsAsync(dto.Id);
+            if (product == null) return null;
+
+            product.Name = dto.Name;
+            product.Price = dto.Price;
+            product.Description = dto.Description;
+            product.CategoryId = dto.CategoryId;
+            // Actualizar tags
+
+            if (dto.TagIds != null)
+            {
+                // Limpiar tags existentes
+                product.Tags.Clear();
+
+                // Añadir nuevos tags
+                var tags = await _tagRepo.GetByIdsAsync(dto.TagIds);
+                foreach (var tag in tags)
+                {
+                    product.Tags.Add(tag);
+                }
+            }
+
+            await _productRepo.UpdateAsync(product);
+            return new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                CategoryId = product.CategoryId,
+                CategoryName = product.Category?.Name,
+                Tags = product.Tags?.Select(t => new TagDto { Id = t.Id, Name = t.Name }).ToList()
+            };
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var product = await _productRepo.GetByIdWithRelationsAsync(id);
+            if (product == null) return false;
+            await _productRepo.DeleteAsync(product.Id);
+            return true;
+        }
+        #endregion
     }
 }

@@ -19,7 +19,14 @@ namespace LT.Infrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
+
         //public DbSet<User> Users { get; set; }
+
+        #region answer
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,7 +48,19 @@ namespace LT.Infrastructure.Data
 
             //modelBuilder.Entity<User>().HasIndex(c => c.Email).IsUnique();
 
+            #region answer
+            modelBuilder.Entity<Author>().HasKey(a => a.Id);
+            modelBuilder.Entity<Author>().HasIndex(a => a.Name);
 
+            modelBuilder.Entity<Genre>().HasKey(g => g.Id);
+            modelBuilder.Entity<Genre>().HasIndex(g => g.Name).IsUnique();
+
+            modelBuilder.Entity<Book>().HasKey(b => b.Id);
+            modelBuilder.Entity<Book>().Property(b => b.Title).IsRequired().HasMaxLength(200);
+            modelBuilder.Entity<Book>().HasOne(b => b.Author).WithMany(a => a.Books).HasForeignKey(b => b.AuthorId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Book>().HasMany(b => b.Genres).WithMany(g => g.Books).UsingEntity(j => j.ToTable("BookGenres"));
+
+            #endregion
             DisableCascadingDelete(modelBuilder);
         }
 
